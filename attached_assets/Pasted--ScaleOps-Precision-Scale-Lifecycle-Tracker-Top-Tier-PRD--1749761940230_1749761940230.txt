@@ -1,0 +1,120 @@
+
+
+ScaleOps — Precision Scale Lifecycle Tracker (Top-Tier PRD)
+===========================================================
+
+📌 Purpose
+----------
+ScaleOps is a secure, mobile-optimized application built for the United States Air Force and other defense units to manage high-precision weighing scales. It ensures operational readiness, calibration compliance, asset accountability, and seamless chain-of-custody tracking — even in offline environments. Built to scale with military-grade security and audit capabilities.
+
+🎯 Objectives
+-------------
+- Enforce full asset accountability with audit logs  
+- Prevent expired/overdue scales from field assignment  
+- Simulate fair-use rotation to extend asset life  
+- Provide command-level visibility and reporting  
+- Operate in offline, field-deployed environments  
+
+🛠️ Key Features
+----------------
+
+🔐 Secure Authentication & Access
+- DoD ID login with future support for CAC/PIV validation  
+- Role-based access: Admin, Technician, Auditor, Viewer  
+- Multi-factor authentication (MFA-ready)
+- User access logs with timestamps and IP/device fingerprinting
+
+🧰 Scale Lifecycle & Assignment Management
+- Manage 36+ precision scale units  
+- Assign/return workflow with:
+  - Date, user, unit, condition, and location tracking  
+- Prevent assignment of:
+  - Expired calibration  
+  - Calibrations expiring within next 30 days  
+- Track full history: chain-of-custody for each unit  
+- Set calibration cycles (default: 2 years)  
+- Flag for inspection, deactivation, or scheduled maintenance  
+- Smart rotation logic to balance asset usage evenly  
+
+📊 Dashboard & Operational Reporting
+- Quick-glance KPIs:
+  - Total units / Expiring / Expired / In-field  
+  - Average usage interval / Underused units  
+- Generate and export:
+  - CSV, JSON, PDF reports
+  - Chain-of-custody logs
+- Email-ready summaries for CO review
+
+🔔 Notifications & Alerts
+- Admin-configurable alerts:
+  - 30/15/7-day calibration warnings  
+  - Overdue returns  
+  - Repeated assignment to same unit  
+- In-app and email notifications (with offline queuing)  
+
+🔍 Search, Filter, and Bulk Actions
+- Filter by:
+  - Calibration status, last assignment, unit, user  
+- Bulk assign/return  
+- Tagging system for asset grouping  
+- Export filtered results to CSV
+
+🧑‍💼 User Role Definitions
+| Role      | Permissions |
+|-----------|-------------|
+| Admin     | Full control, user management, reports |
+| Technician | Assign/return, calibrate, view logs |
+| Auditor   | View all logs, generate reports |
+| Viewer    | Read-only dashboard and asset view |
+
+📱 UX & Mobile Optimization
+- Mobile-first design, responsive for tablet and desktop  
+- Intuitive interface with gesture support  
+- Dark mode, large-tap areas, haptic/audio feedback  
+- View delays for smoother transitions  
+
+⚙️ Offline + Syncing
+- Full offline support via SQLite / local storage  
+- Background sync when network is available  
+- Optional DoD-compliant cloud backup + sync (e.g. AWS GovCloud, MilCloud)
+
+📡 Integration & Extensibility
+- Future API for importing from DoD supply systems (NSN, DoDAAC)  
+- REST endpoint for audit consumption  
+- Modular structure for adding equipment beyond scales  
+
+🧠 AI/ML (Advanced Option)
+- Predictive calibration failure based on past data  
+- Usage optimization suggestions (e.g. redistribute underused assets)  
+- Auto-flagging suspicious activity (reassigning to same user frequently)
+
+🧪 Success Criteria
+-------------------
+- ✅ App installs and runs without issue across iOS, Android, and Web  
+- ✅ Fully operational offline with eventual cloud sync  
+- ✅ Admin can register/manage users securely  
+- ✅ Users can assign, return, and view full scale logs  
+- ✅ No expired scales assigned in test cycles  
+- ✅ 100% audit logs traceable for any event in system  
+- ✅ Predictive calibration tested with >80% accuracy on sample data  
+
+🔧 Technical Summary
+---------------------
+| Component      | Specification                             |
+|----------------|--------------------------------------------|
+| Platform       | iOS, Android (PWA + React Native), Web     |
+| Backend        | Python (Flask or FastAPI), SQLite + optional PostgreSQL |
+| Frontend       | React.js (PWA compliant) or Streamlit      |
+| Authentication | DoD ID-based (extensible to CAC/PIV), MFA-ready |
+| Offline Mode   | IndexedDB (Web) or SQLite (Native)         |
+| Reporting      | PDF/CSV via server-side rendering          |
+| Hosting        | Replit (Prototype), AWS GovCloud (Deployment) |
+
+📈 Roadmap
+----------
+| Phase        | Focus                     | Timeframe |
+|--------------|---------------------------|-----------|
+| MVP          | Offline tracking + DoD ID | Month 1   |
+| v1.0         | Role-based auth, reporting | Month 2   |
+| v1.1         | Predictive logic, dashboard | Month 3   |
+| v2.0         | CAC integration + PWA build | Month 4   |
