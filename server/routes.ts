@@ -147,7 +147,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/scales", async (req, res) => {
     try {
-      const scaleData = insertScaleSchema.parse(req.body);
+      // Convert date strings to Date objects if provided
+      const body = { ...req.body };
+      if (body.nextCalibrationDate) {
+        body.nextCalibrationDate = new Date(body.nextCalibrationDate);
+      }
+      if (body.calibrationDate) {
+        body.calibrationDate = new Date(body.calibrationDate);
+      }
+      
+      const scaleData = insertScaleSchema.parse(body);
       const scale = await storage.createScale(scaleData);
 
       // Log the creation
